@@ -103,11 +103,19 @@ export default function Weather() {
               Erica Hu
             </a>
             , it's open-sourced on{" "}
-            <a href="#" target="_blank" rel="noreferrer">
+            <a
+              href="https://github.com/huxrce/weather-react"
+              target="_blank"
+              rel="noreferrer"
+            >
               GitHub
             </a>
             , and hosted on{" "}
-            <a href="#" target="blank" rel="noreferrer">
+            <a
+              href="https://shecodes-react-week4-homework.onrender.com"
+              target="blank"
+              rel="noreferrer"
+            >
               Render
             </a>
           </footer>

@@ -10,11 +10,12 @@ export default function Weather() {
   function displayWeather(response) {
     setLoaded(true);
     setWeather({
+      city: response.data.city,
       temperature: response.data.temperature.current,
       description: response.data.condition.description,
-      humidity: response.temperature.humidity,
+      humidity: response.data.temperature.humidity,
       wind: response.data.wind.speed,
-      icon: response.data.condition.icon,
+      icon: response.data.condition.icon_url,
     });
   }
 
@@ -44,28 +45,33 @@ export default function Weather() {
 
   if (loaded) {
     return (
-      <div className="Weather container">
-        {form}
-        <main>
-          <div className="current-weather-data">
-            <div>
-              <h1 className="current-weather-city"></h1>
-              <p className="current-weather-details">
-                <span>Wednesday 17:37</span>,<span> {weather.description}</span>
-                <br />
-                Humidity: <strong>{weather.humidity}</strong>, Wind:
-                <strong>{weather.wind}</strong>
-              </p>
-            </div>
-            <div className="current-temp-details">
+      <div className="Weather">
+        <div className="weather-app">
+          {form}
+          <main>
+            <div className="current-weather-data">
               <div>
-                <img src={weather.icon} alt={weather.description} />
+                <h1 className="current-weather-city">{weather.city}</h1>
+                <p className="current-weather-details">
+                  <span>Wednesday 17:37</span>,
+                  <span> {weather.description}</span>
+                  <br />
+                  Humidity: <strong>{weather.humidity}</strong>, Wind:
+                  <strong>{weather.wind}</strong>
+                </p>
               </div>
-              <div className="current-temp">{weather.temperature}</div>
-              <div className="current-temp-unit">°C</div>
+              <div className="current-temp-details">
+                <div>
+                  <img src={weather.icon} alt={weather.description} />
+                </div>
+                <div className="current-temp">
+                  {Math.round(weather.temperature)}
+                </div>
+                <div className="current-temp-unit">°C</div>
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
+        </div>
         <footer>
           This project was coded by{" "}
           <a href="https://github.com/huxrce" target="_blank" rel="noreferrer">
@@ -83,6 +89,30 @@ export default function Weather() {
       </div>
     );
   } else {
-    return form;
+    return (
+      <div className="Weather">
+        <div className="weather-app">
+          {form}
+          <footer>
+            This project was coded by{" "}
+            <a
+              href="https://github.com/huxrce"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Erica Hu
+            </a>
+            , it's open-sourced on{" "}
+            <a href="#" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            , and hosted on{" "}
+            <a href="#" target="blank" rel="noreferrer">
+              Render
+            </a>
+          </footer>
+        </div>
+      </div>
+    );
   }
 }
